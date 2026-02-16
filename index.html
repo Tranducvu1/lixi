@@ -103,6 +103,56 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════════ */
+        /* INPUT SECTION */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .input-section {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .input-label {
+            color: var(--light-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .amount-input {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            color: white;
+            width: 180px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .amount-input:focus {
+            outline: none;
+            border-color: var(--light-gold);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .amount-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
         /* ENVELOPE CARD */
         /* ═══════════════════════════════════════════════════════════════════ */
         .envelope-card {
@@ -201,9 +251,20 @@
             transform: translateY(-2px) scale(1.02);
         }
 
+        .draw-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .draw-button.drawing {
-            animation: pulse 0.5s ease-in-out infinite;
+            animation: pulse-button 0.5s ease-in-out infinite;
             pointer-events: none;
+        }
+
+        @keyframes pulse-button {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .draw-button.hidden {
@@ -369,15 +430,27 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════════ */
-        /* COUNTER ANIMATION */
+        /* ERROR MESSAGE */
         /* ═══════════════════════════════════════════════════════════════════ */
-        .counting {
-            animation: numberCount 1s ease-out;
+        .error-message {
+            color: #fef3c7;
+            background: rgba(220, 38, 38, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            display: none;
+            animation: shake-error 0.5s ease;
         }
 
-        @keyframes numberCount {
-            0% { opacity: 0.5; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes shake-error {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
 
         /* ═══════════════════════════════════════════════════════════════════ */
@@ -408,6 +481,11 @@
             .wish-text {
                 font-size: 1.1rem;
             }
+
+            .amount-input {
+                width: 150px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -431,6 +509,15 @@
                 padding: 15px 40px;
                 font-size: 1.1rem;
             }
+
+            .input-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .amount-input {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -439,8 +526,22 @@
         <!-- HEADER -->
         <div class="header">
             <h1 class="title">🎊 XỔ SỐ LÌ XÌ 2026 🎊</h1>
-            <p class="subtitle">Thử vận may của bạn! Nhận từ 10.000 - 200.000 VNĐ</p>
+            <p class="subtitle">Thử vận may của bạn! Nhập số tiền tối thiểu và tối đa</p>
         </div>
+
+        <!-- INPUT SECTION -->
+        <div class="input-section">
+            <div class="input-group">
+                <label class="input-label">Số tiền MIN (VNĐ)</label>
+                <input type="number" id="minAmount" class="amount-input" placeholder="10,000" value="10000" min="0" step="1">
+            </div>
+            <div class="input-group">
+                <label class="input-label">Số tiền MAX (VNĐ)</label>
+                <input type="number" id="maxAmount" class="amount-input" placeholder="200,000" value="200000" min="0" step="1">
+            </div>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
 
         <!-- ENVELOPE CARD -->
         <div class="envelope-card">
@@ -476,45 +577,85 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════════════
-        // WISH TEMPLATES BASED ON AMOUNT
+        // GET WISH BASED ON AMOUNT
         // ═══════════════════════════════════════════════════════════════════
-        const WISHES = {
-            10000: {
-                emoji: '☕',
-                text: 'Một ly cà phê để bắt đầu ngày mới tràn đầy năng lượng! Chúc bạn luôn tỉnh táo và làm việc hiệu quả!'
-            },
-            20000: {
-                emoji: '🍜',
-                text: 'Đủ tiền ăn một bữa phở ngon lành! Chúc bạn năm mới ăn gì cũng ngon miệng, sức khỏe dồi dào!'
-            },
-            30000: {
-                emoji: '🎮',
-                text: 'Mua được vài item game xịn rồi đây! Chúc bạn chơi game luôn win streak, rank leo vùn vụt!'
-            },
-            50000: {
-                emoji: '🚀',
-                text: 'Số tiền này đủ để học một khóa học online hay đấy! Chúc bạn học tập tiến bộ, kiến thức ngày càng phong phú!'
-            },
-            70000: {
-                emoji: '💰',
-                text: 'Wow! Số tiền khá ổn đấy! Chúc bạn năm mới tài lộc dồi dào, tiền bạc lúc nào cũng rủng rỉnh!'
-            },
-            100000: {
-                emoji: '💎',
-                text: 'JACKPOT! Bạn quá may mắn! Chúc bạn năm mới vạn sự như ý, thành công rực rỡ, mọi điều đều hoàn hảo!'
+        function getWishForAmount(amount) {
+            if (amount < 30000) {
+                return {
+                    emoji: '☕',
+                    text: 'Một ly cà phê để bắt đầu ngày mới tràn đầy năng lượng! Chúc bạn luôn tỉnh táo và làm việc hiệu quả!'
+                };
+            } else if (amount < 60000) {
+                return {
+                    emoji: '🍜',
+                    text: 'Đủ tiền ăn một bữa ngon lành! Chúc bạn năm mới ăn gì cũng ngon miệng, sức khỏe dồi dào!'
+                };
+            } else if (amount < 100000) {
+                return {
+                    emoji: '💰',
+                    text: 'Wow! Số tiền khá ổn đấy! Chúc bạn năm mới tài lộc dồi dào, tiền bạc lúc nào cũng rủng rỉnh!'
+                };
+            } else if (amount < 150000) {
+                return {
+                    emoji: '🚀',
+                    text: 'Tuyệt vời! Số tiền này rất xịn! Chúc bạn học tập tiến bộ, công việc thăng tiến vượt bậc!'
+                };
+            } else {
+                return {
+                    emoji: '💎',
+                    text: 'JACKPOT! Bạn quá may mắn! Chúc bạn năm mới vạn sự như ý, thành công rực rỡ, mọi điều đều hoàn hảo!'
+                };
             }
-        };
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // VALIDATE INPUT
+        // ═══════════════════════════════════════════════════════════════════
+        function validateInput() {
+            const minInput = document.getElementById('minAmount');
+            const maxInput = document.getElementById('maxAmount');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            const min = parseInt(minInput.value) || 0;
+            const max = parseInt(maxInput.value) || 0;
+            
+            if (min < 0 || max < 0) {
+                errorMessage.textContent = '❌ Số tiền phải lớn hơn hoặc bằng 0!';
+                errorMessage.classList.add('show');
+                return false;
+            }
+            
+            if (min >= max) {
+                errorMessage.textContent = '❌ Số tiền MIN phải nhỏ hơn số tiền MAX!';
+                errorMessage.classList.add('show');
+                return false;
+            }
+            
+            errorMessage.classList.remove('show');
+            return true;
+        }
 
         // ═══════════════════════════════════════════════════════════════════
         // MAIN DRAW FUNCTION
         // ═══════════════════════════════════════════════════════════════════
         function drawLuckyMoney() {
+            // Validate input first
+            if (!validateInput()) {
+                return;
+            }
+            
             const button = document.getElementById('drawButton');
             const envelope = document.getElementById('envelopeIcon');
             const result = document.getElementById('resultContainer');
+            const minInput = document.getElementById('minAmount');
+            const maxInput = document.getElementById('maxAmount');
+            
+            const min = parseInt(minInput.value) || 0;
+            const max = parseInt(maxInput.value) || 0;
             
             // Disable button and add animation
             button.classList.add('drawing');
+            button.disabled = true;
             envelope.classList.add('shake');
             
             setTimeout(() => {
@@ -522,9 +663,8 @@
                 envelope.classList.add('open');
             }, 500);
 
-            // Random amount (10k, 20k, 30k, 50k, 70k, 100k)
-            const amounts = [10000, 20000, 30000, 50000, 70000, 100000];
-            const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+            // Random amount between min and max (including odd numbers)
+            const randomAmount = Math.floor(Math.random() * (max - min + 1)) + min;
             
             setTimeout(() => {
                 // Hide button and envelope
@@ -564,7 +704,7 @@
                     clearInterval(counter);
                     
                     // Show wish after counter finishes
-                    const wish = WISHES[finalAmount];
+                    const wish = getWishForAmount(finalAmount);
                     wishEmoji.textContent = wish.emoji;
                     wishText.textContent = wish.text;
                 }
@@ -630,9 +770,11 @@
             const button = document.getElementById('drawButton');
             const envelope = document.getElementById('envelopeIcon');
             const result = document.getElementById('resultContainer');
+            const errorMessage = document.getElementById('errorMessage');
             
             // Hide result
             result.classList.remove('show');
+            errorMessage.classList.remove('show');
             
             setTimeout(() => {
                 // Reset envelope
@@ -641,6 +783,7 @@
                 
                 // Show button
                 button.classList.remove('hidden', 'drawing');
+                button.disabled = false;
                 
                 // Reset amount display
                 document.getElementById('amount').textContent = '0';
@@ -664,6 +807,12 @@
             }
         `;
         document.head.appendChild(style);
+
+        // ═══════════════════════════════════════════════════════════════════
+        // INPUT VALIDATION ON CHANGE
+        // ═══════════════════════════════════════════════════════════════════
+        document.getElementById('minAmount').addEventListener('input', validateInput);
+        document.getElementById('maxAmount').addEventListener('input', validateInput);
 
         // ═══════════════════════════════════════════════════════════════════
         // INITIAL CONFETTI
