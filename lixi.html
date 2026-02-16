@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xổ Số Lì Xì 2025 🧧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #dc2626;
+            --gold: #fbbf24;
+            --dark-red: #991b1b;
+            --light-gold: #fef3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 50%, #450a0a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BACKGROUND ANIMATION */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* MAIN CONTAINER */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .header {
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold) 0%, #fff 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 20px rgba(251, 191, 36, 0.6)); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 40px rgba(251, 191, 36, 0.9)); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gold);
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* ENVELOPE CARD */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .envelope-card {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 30px;
+            padding: 50px 40px;
+            border: 4px solid var(--gold);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 50px rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .envelope-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .envelope-icon {
+            font-size: 8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .envelope-icon.shake {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-10px) rotate(-10deg); }
+            75% { transform: translateX(10px) rotate(10deg); }
+        }
+
+        .envelope-icon.open {
+            animation: openEnvelope 1s ease forwards;
+        }
+
+        @keyframes openEnvelope {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(360deg); }
+            100% { transform: scale(0) rotate(720deg); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* DRAW BUTTON */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .draw-button {
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, #f59e0b 100%);
+            color: var(--dark-red);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.5);
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
+        }
+
+        .draw-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.7);
+        }
+
+        .draw-button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .draw-button.drawing {
+            animation: pulse 0.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .draw-button.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* RESULT DISPLAY */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .result-container {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s;
+        }
+
+        .result-container.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .amount-display {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold) 0%, #fff 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.8);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .currency {
+            font-size: 2rem;
+            color: var(--light-gold);
+            font-weight: 600;
+        }
+
+        .wish-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wish-emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .wish-text {
+            font-size: 1.3rem;
+            color: white;
+            line-height: 1.8;
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* PLAY AGAIN BUTTON */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .play-again-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+
+        .play-again-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* MOMO BUTTON */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .momo-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a91079 0%, #d71e7e 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(169, 16, 121, 0.5);
+            margin-top: 15px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .momo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(169, 16, 121, 0.7);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* CONFETTI */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 999;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* FIREWORK PARTICLES */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* COUNTER ANIMATION */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        .counting {
+            animation: numberCount 1s ease-out;
+        }
+
+        @keyframes numberCount {
+            0% { opacity: 0.5; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* RESPONSIVE */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .envelope-card {
+                padding: 40px 25px;
+            }
+
+            .envelope-icon {
+                font-size: 6rem;
+            }
+
+            .amount-display {
+                font-size: 3.5rem;
+            }
+
+            .draw-button {
+                padding: 18px 50px;
+                font-size: 1.3rem;
+            }
+
+            .wish-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .envelope-icon {
+                font-size: 5rem;
+            }
+
+            .amount-display {
+                font-size: 2.8rem;
+            }
+
+            .draw-button {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1 class="title">🎊 XỔ SỐ LÌ XÌ 2025 🎊</h1>
+            <p class="subtitle">Thử vận may của bạn! Nhận từ 10.000 - 100.000 VNĐ</p>
+        </div>
+
+        <!-- ENVELOPE CARD -->
+        <div class="envelope-card">
+            <div id="envelopeIcon" class="envelope-icon">🧧</div>
+            
+            <!-- DRAW BUTTON -->
+            <button id="drawButton" class="draw-button" onclick="drawLuckyMoney()">
+                🎲 MỞ LÌ XÌ NGAY 🎲
+            </button>
+
+            <!-- RESULT CONTAINER -->
+            <div id="resultContainer" class="result-container">
+                <div id="amountDisplay" class="amount-display">
+                    <span id="amount">0</span>
+                    <span class="currency">VNĐ</span>
+                </div>
+
+                <div class="wish-box">
+                    <div id="wishEmoji" class="wish-emoji">🎉</div>
+                    <div id="wishText" class="wish-text">Chúc mừng bạn!</div>
+                </div>
+
+                <button class="play-again-btn" onclick="resetGame()">
+                    🔄 Chơi Lại
+                </button>
+
+                <a href="https://me.momo.vn/pwI4TzsqfDCduxUgfQFeiN" target="_blank" class="momo-btn">
+                    📱 Gửi Lì Xì Qua MoMo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════
+        // WISH TEMPLATES BASED ON AMOUNT
+        // ═══════════════════════════════════════════════════════════════════
+        const WISHES = {
+            10000: {
+                emoji: '☕',
+                text: 'Một ly cà phê để bắt đầu ngày mới tràn đầy năng lượng! Chúc bạn luôn tỉnh táo và làm việc hiệu quả!'
+            },
+            20000: {
+                emoji: '🍜',
+                text: 'Đủ tiền ăn một bữa phở ngon lành! Chúc bạn năm mới ăn gì cũng ngon miệng, sức khỏe dồi dào!'
+            },
+            30000: {
+                emoji: '🎮',
+                text: 'Mua được vài item game xịn rồi đây! Chúc bạn chơi game luôn win streak, rank leo vùn vụt!'
+            },
+            50000: {
+                emoji: '🚀',
+                text: 'Số tiền này đủ để học một khóa học online hay đấy! Chúc bạn học tập tiến bộ, kiến thức ngày càng phong phú!'
+            },
+            70000: {
+                emoji: '💰',
+                text: 'Wow! Số tiền khá ổn đấy! Chúc bạn năm mới tài lộc dồi dào, tiền bạc lúc nào cũng rủng rỉnh!'
+            },
+            100000: {
+                emoji: '💎',
+                text: 'JACKPOT! Bạn quá may mắn! Chúc bạn năm mới vạn sự như ý, thành công rực rỡ, mọi điều đều hoàn hảo!'
+            }
+        };
+
+        // ═══════════════════════════════════════════════════════════════════
+        // MAIN DRAW FUNCTION
+        // ═══════════════════════════════════════════════════════════════════
+        function drawLuckyMoney() {
+            const button = document.getElementById('drawButton');
+            const envelope = document.getElementById('envelopeIcon');
+            const result = document.getElementById('resultContainer');
+            
+            // Disable button and add animation
+            button.classList.add('drawing');
+            envelope.classList.add('shake');
+            
+            setTimeout(() => {
+                envelope.classList.remove('shake');
+                envelope.classList.add('open');
+            }, 500);
+
+            // Random amount (10k, 20k, 30k, 50k, 70k, 100k)
+            const amounts = [10000, 20000, 30000, 50000, 70000, 100000];
+            const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+            
+            setTimeout(() => {
+                // Hide button and envelope
+                button.classList.add('hidden');
+                envelope.style.opacity = '0';
+                
+                // Show result with counter animation
+                result.classList.add('show');
+                animateCounter(randomAmount);
+                
+                // Create firework explosion
+                createFireworkExplosion();
+                
+                // Show confetti
+                createConfettiBurst();
+                
+            }, 1500);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // ANIMATE COUNTER
+        // ═══════════════════════════════════════════════════════════════════
+        function animateCounter(finalAmount) {
+            const amountElement = document.getElementById('amount');
+            const wishEmoji = document.getElementById('wishEmoji');
+            const wishText = document.getElementById('wishText');
+            
+            let current = 0;
+            const increment = finalAmount / 50; // 50 steps
+            const duration = 1500; // 1.5 seconds
+            const stepTime = duration / 50;
+            
+            const counter = setInterval(() => {
+                current += increment;
+                if (current >= finalAmount) {
+                    current = finalAmount;
+                    clearInterval(counter);
+                    
+                    // Show wish after counter finishes
+                    const wish = WISHES[finalAmount];
+                    wishEmoji.textContent = wish.emoji;
+                    wishText.textContent = wish.text;
+                }
+                amountElement.textContent = Math.floor(current).toLocaleString('vi-VN');
+            }, stepTime);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // FIREWORK EXPLOSION
+        // ═══════════════════════════════════════════════════════════════════
+        function createFireworkExplosion() {
+            const colors = ['#fbbf24', '#dc2626', '#fff', '#f59e0b', '#fef3c7'];
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 150 + Math.random() * 150;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.animation = `explode 1s ease-out forwards`;
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // CONFETTI BURST
+        // ═══════════════════════════════════════════════════════════════════
+        function createConfettiBurst() {
+            const colors = ['#fbbf24', '#dc2626', '#fff', '#f59e0b', '#fef3c7'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // RESET GAME
+        // ═══════════════════════════════════════════════════════════════════
+        function resetGame() {
+            const button = document.getElementById('drawButton');
+            const envelope = document.getElementById('envelopeIcon');
+            const result = document.getElementById('resultContainer');
+            
+            // Hide result
+            result.classList.remove('show');
+            
+            setTimeout(() => {
+                // Reset envelope
+                envelope.style.opacity = '1';
+                envelope.classList.remove('open');
+                
+                // Show button
+                button.classList.remove('hidden', 'drawing');
+                
+                // Reset amount display
+                document.getElementById('amount').textContent = '0';
+            }, 500);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // PARTICLE EXPLOSION KEYFRAMES (Dynamic)
+        // ═══════════════════════════════════════════════════════════════════
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% {
+                    opacity: 1;
+                    transform: translate(0, 0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translate(var(--tx), var(--ty)) scale(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ═══════════════════════════════════════════════════════════════════
+        // INITIAL CONFETTI
+        // ═══════════════════════════════════════════════════════════════════
+        window.addEventListener('load', () => {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const colors = ['#fbbf24', '#dc2626', '#fff', '#f59e0b', '#fef3c7'];
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
